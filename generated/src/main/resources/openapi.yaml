@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  description: API for managing Quests in HarbourEats platform.
+  title: HarbourEats Quests API
+  version: 1.0.0
+servers:
+- url: https://api.harbour-eats.com/v1
+paths:
+  /quests/{questId}/join:
+    post:
+      parameters:
+      - description: ID of the Quest to join
+        explode: false
+        in: path
+        name: questId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Quest is joined successfully
+        "404":
+          description: Quest not found
+        "500":
+          description: Quest not found
+      summary: Join a specific Quest
+  /quests/active:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveQuestsList'
+          description: List of ongoing Quests retrieved successfully
+      summary: Retrieve a list of ongoing Quests
+  /quests/history:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompletedQuestsList'
+          description: List of completed Quests retrieved successfully
+      summary: Retrieve a history of completed Quests for a courier
+  /quests/{questId}/details:
+    get:
+      parameters:
+      - description: ID of the Quest to retrieve details for
+        explode: false
+        in: path
+        name: questId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestDetails'
+          description: Quest details retrieved successfully
+        "404":
+          description: Quest not found
+      summary: Retrieve details of a specific Quest
+components:
+  schemas:
+    QuestDetails:
+      example:
+        hoursDuration: 0
+        orderThreshold: 6
+        description: description
+        rewardAmount: 1
+        title: title
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        hoursDuration:
+          type: integer
+        orderThreshold:
+          type: integer
+        rewardAmount:
+          type: integer
+      type: object
+    ActiveQuestsList:
+      items:
+        $ref: '#/components/schemas/QuestDetails'
+      type: array
+    CompletedQuestsList:
+      items:
+        $ref: '#/components/schemas/QuestDetails'
+      type: array
