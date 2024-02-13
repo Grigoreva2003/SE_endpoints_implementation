@@ -95,7 +95,7 @@ class QuestsApiController() {
         method = [RequestMethod.POST],
         value = ["/quests/{questId}/join"]
     )
-    fun questsQuestIdJoinPost(@Parameter(description = "ID of the Quest to join", required = true) @PathVariable("questId") questId: kotlin.String): ResponseEntity<String> {
+    fun questsQuestIdJoinPost(@Parameter(description = "ID of the Quest to join", required = true) @PathVariable("questId") questId: kotlin.String): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }

@@ -48,8 +48,8 @@ public class QuestDetailsController extends QuestsApiController {
     }
 
     @Override
-    public ResponseEntity<String> questsQuestIdJoinPost(String questId) {
+    public ResponseEntity questsQuestIdJoinPost(String questId) {
         courierService.joinQuest(authenticationData, questId);
-        return ok("joined successfully");
+        return ok().build();
     }
 }
