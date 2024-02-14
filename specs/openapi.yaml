@@ -14,7 +14,7 @@ paths:
           name: questId
           required: true
           schema:
-            type: string
+            type: integer
           description: ID of the Quest to join
       responses:
         '200':
@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActiveQuestsList'
+                type: string
   /quests/history:
     get:
       summary: Retrieve a history of completed Quests for a courier
@@ -42,7 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CompletedQuestsList'
+                type: string
   /quests/{questId}/details:
     get:
       summary: Retrieve details of a specific Quest
@@ -51,7 +51,7 @@ paths:
           name: questId
           required: true
           schema:
-            type: string
+            type: integer
           description: ID of the Quest to retrieve details for
       responses:
         '200':
@@ -59,29 +59,6 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuestDetails'
+                type: string
         '404':
           description: Quest not found
-components:
-  schemas:
-    QuestDetails:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        hoursDration:
-          type: integer
-        orderThreshold:
-          type: integer
-        rewardAmount:
-          type: integer
-    ActiveQuestsList:
-      type: array
-      items:
-        $ref: '#/components/schemas/QuestDetails'
-    CompletedQuestsList:
-      type: array
-      items:
-        $ref: '#/components/schemas/QuestDetails'

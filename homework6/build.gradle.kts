@@ -19,7 +19,10 @@ repositories {
 }
 
 dependencies {
-	implementation(project(":generated")) // this line doesn't work for me
+	implementation(project(":generated"))
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	implementation("org.hibernate:hibernate-core:6.4.4.Final")
+	implementation("org.postgresql:postgresql:42.7.1")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")

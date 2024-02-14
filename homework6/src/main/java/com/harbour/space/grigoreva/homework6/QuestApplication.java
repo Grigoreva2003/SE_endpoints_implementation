@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QuestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(QuestApplication.class, args);
+		try {
+			SpringApplication.run(QuestApplication.class, args);
+		} catch (Throwable e) {
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
+		}
 	}
 }

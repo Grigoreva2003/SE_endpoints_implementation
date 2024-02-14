@@ -1,7 +1,7 @@
 package com.harbour.space.grigoreva.homework6.service;
 
-import com.harbour.space.grigoreva.homework6.entities.AuthenticationData;
-import org.openapitools.model.QuestDetails;
+import com.harbour.space.grigoreva.homework6.cookies.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface CourierService {
 
     List<QuestDetails> getQuestsHistory(AuthenticationData authenticationData);
 
-    QuestDetails getQuestsDetails(String questId);
+    QuestDetails getQuestsDetails(Integer questId);
 
-    void joinQuest(AuthenticationData authenticationData, String questId);
+    void joinQuest(AuthenticationData authenticationData, Integer questId);
 }

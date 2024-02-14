@@ -1,9 +1,9 @@
 package com.harbour.space.grigoreva.homework6.controller;
 
-import com.harbour.space.grigoreva.homework6.entities.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.cookies.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
 import com.harbour.space.grigoreva.homework6.service.CourierService;
 import org.openapitools.api.QuestsApiController;
-import org.openapitools.model.QuestDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -25,30 +25,30 @@ public class QuestDetailsController extends QuestsApiController {
     }
 
     @Override
-    public ResponseEntity<List<QuestDetails>> questsActiveGet() {
-        return ok(courierService.getActiveQuests());
+    public ResponseEntity<String> questsActiveGet() {
+        return ok(courierService.getActiveQuests().toString());
     }
 
     @Override
-    public ResponseEntity<List<QuestDetails>> questsHistoryGet() {
+    public ResponseEntity<String> questsHistoryGet() {
         List<QuestDetails> questDetailsList = courierService.getQuestsHistory(authenticationData);
 
         if (questDetailsList.isEmpty())
             return ResponseEntity.notFound().build();
-        return ok(questDetailsList);
+        return ok(questDetailsList.toString());
     }
 
     @Override
-    public ResponseEntity<QuestDetails> questsQuestIdDetailsGet(String questId) {
+    public ResponseEntity<String> questsQuestIdDetailsGet(int questId) {
         QuestDetails questDetails = courierService.getQuestsDetails(questId);
 
         if (questDetails == null)
             return ResponseEntity.notFound().build();
-        return ok(questDetails);
+        return ok(questDetails.toString());
     }
 
     @Override
-    public ResponseEntity questsQuestIdJoinPost(String questId) {
+    public ResponseEntity questsQuestIdJoinPost(int questId) {
         courierService.joinQuest(authenticationData, questId);
         return ok().build();
     }
