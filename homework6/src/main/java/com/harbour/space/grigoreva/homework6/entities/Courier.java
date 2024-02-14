@@ -1,9 +1,6 @@
 package com.harbour.space.grigoreva.homework6.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +25,9 @@ public class Courier {
     @Column(name = "surname")
     private String surname;
 
+    @ManyToMany
     private List<QuestDetails> questHistory;
+    @ManyToMany
     private List<QuestDetails> activeQuests;
 
     public <E> Courier(Integer courierId,

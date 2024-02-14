@@ -3,6 +3,8 @@ package com.harbour.space.grigoreva.homework6.service;
 import com.harbour.space.grigoreva.homework6.cookies.AuthenticationData;
 import com.harbour.space.grigoreva.homework6.entities.Courier;
 import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
+import com.harbour.space.grigoreva.homework6.entities.QuestDetailsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +13,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class MainCourierService implements CourierService {
     private static final Map<Integer, Courier> couriers = new HashMap<>();
     private static final List<QuestDetails> activeQuests = new ArrayList<>();
 
     private static final Map<String, QuestDetails> allQuests = new HashMap<>();
+
+    private final QuestDetailsRepository questDetailsRepository;
 
 //    public MainCourierService() {
 //        //mock data
@@ -65,9 +70,7 @@ public class MainCourierService implements CourierService {
 
     @Override
     public QuestDetails getQuestsDetails(Integer questId) {
-        if (allQuests.containsKey(questId))
-            return allQuests.get(questId);
-        return null;
+        return questDetailsRepository.getReferenceById(questId);
     }
 
     @Override
