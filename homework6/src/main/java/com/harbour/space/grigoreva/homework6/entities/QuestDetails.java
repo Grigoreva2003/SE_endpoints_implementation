@@ -1,13 +1,13 @@
 package com.harbour.space.grigoreva.homework6.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -34,4 +34,13 @@ public class QuestDetails {
 
     @Column(name = "reward_amount")
     private int rewardAmount;
+
+    @Column(name = "is_finished")
+    private boolean isFinished;
+
+    @ManyToMany
+    @JoinTable(name = "involvement",
+            joinColumns = @JoinColumn(name = "quest_id"),
+            inverseJoinColumns = @JoinColumn(name = "courier_id"))
+    private Set<Courier> couriers = new HashSet<>();
 }

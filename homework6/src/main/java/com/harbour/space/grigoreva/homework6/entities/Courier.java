@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -25,22 +26,6 @@ public class Courier {
     @Column(name = "surname")
     private String surname;
 
-    @ManyToMany
-    private List<QuestDetails> questHistory;
-    @ManyToMany
-    private List<QuestDetails> activeQuests;
-
-    public <E> Courier(Integer courierId,
-                       Integer completedOrdersNum,
-                       List<QuestDetails> questHistory,
-                       List<QuestDetails> activeQuests) {
-        this.courierId = courierId;
-        this.completedOrdersNum = completedOrdersNum;
-        this.questHistory = questHistory;
-        this.activeQuests = activeQuests;
-    }
-
-    public void joinQuest(QuestDetails quest) {
-        activeQuests.add(quest);
-    }
+    @ManyToMany(mappedBy = "couriers")
+    private Set<QuestDetails> quests = new HashSet<>();
 }
