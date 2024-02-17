@@ -1,8 +1,8 @@
 package com.harbour.space.grigoreva.homework6.service;
 
-import com.harbour.space.grigoreva.homework6.cookies.AuthenticationData;
-import com.harbour.space.grigoreva.homework6.entities.Courier;
-import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
+import com.harbour.space.grigoreva.homework6.cookie.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.entity.Courier;
+import com.harbour.space.grigoreva.homework6.entity.QuestDetails;
 import com.harbour.space.grigoreva.homework6.repository.CourierRepository;
 import com.harbour.space.grigoreva.homework6.repository.QuestDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;

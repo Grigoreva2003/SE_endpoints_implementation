@@ -1,6 +1,6 @@
 package com.harbour.space.grigoreva.homework6.service;
 
-import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
+import com.harbour.space.grigoreva.homework6.entity.QuestDetails;
 import com.harbour.space.grigoreva.homework6.repository.QuestDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

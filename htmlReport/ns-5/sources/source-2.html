@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > QuestService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.harbour.space.grigoreva.homework6.service</a>
+</div>
+
+<h1>Coverage Summary for Class: QuestService (com.harbour.space.grigoreva.homework6.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">QuestService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.harbour.space.grigoreva.homework6.service;
+&nbsp;
+&nbsp;import com.harbour.space.grigoreva.homework6.entity.QuestDetails;
+&nbsp;import com.harbour.space.grigoreva.homework6.repository.QuestDetailsRepository;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class QuestService {
+&nbsp;
+&nbsp;    private final QuestDetailsRepository questDetailsRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public QuestService(QuestDetailsRepository questDetailsRepository) {</b>
+<b class="fc">&nbsp;        this.questDetailsRepository = questDetailsRepository;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public List&lt;QuestDetails&gt; getActiveQuests() {
+<b class="fc">&nbsp;        return questDetailsRepository.findByIsFinishedFalse();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;QuestDetails&gt; getFinishedQuests() {
+<b class="fc">&nbsp;        return questDetailsRepository.findByIsFinishedTrue();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public QuestDetails getQuestDetails(int questId) {
+<b class="fc">&nbsp;        return questDetailsRepository.findById(questId).orElse(null);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-17 16:10</div>
+</div>
+</body>
+</html>

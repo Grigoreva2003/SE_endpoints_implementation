@@ -1,10 +1,7 @@
-package com.harbour.space.grigoreva.homework6.entities;
-
+package com.harbour.space.grigoreva.homework6.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;

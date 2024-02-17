@@ -1,8 +1,10 @@
-package com.harbour.space.grigoreva.homework6.cookies;
+package com.harbour.space.grigoreva.homework6.cookie;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class AuthenticationData {
     private Integer courierId;
     private String login;
