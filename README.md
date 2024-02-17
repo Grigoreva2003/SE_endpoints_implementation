@@ -27,3 +27,11 @@ To retrieve details of a specific quest by its name:
 ```bash
 curl http://localhost:8080/v1/quests/name/details
 ```
+
+To join a quest with a specific Id
+```bash
+curl -X 'POST' \
+  'http://localhost:8080/v1/quests/12/join' \
+  -H 'accept: */*' \
+  -d ''
+```
