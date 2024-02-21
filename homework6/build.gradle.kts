@@ -5,18 +5,18 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
 }
 
+repositories {
+    mavenCentral()
+}
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
@@ -26,9 +26,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
-    runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 tasks.withType<Test> {
