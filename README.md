@@ -15,15 +15,15 @@ We assume that the identification information about the courier is contained in 
 ## Requests
 To retrieve a list of active quests:
 ```bash
-curl http://localhost:8080/v1/quests/active
+curl http://localhost:8888/v1/quests/active
 ```
 
 To retrieve the history of completed quests:
 ```bash
-curl http://localhost:8080/v1/quests/history
+curl http://localhost:8888/v1/quests/history
 ```
 
 To retrieve details of a specific quest by its name:
 ```bash
-curl http://localhost:8080/v1/quests/name/details
+curl http://localhost:8888/v1/quests/name/details
 ```
