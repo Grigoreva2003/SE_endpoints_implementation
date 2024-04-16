@@ -1,4 +1,4 @@
-package com.harbour.space.grigoreva.homework6.entities;
+package com.harbour.space.grigoreva.homework6.cookies;
 
 import lombok.Getter;
 

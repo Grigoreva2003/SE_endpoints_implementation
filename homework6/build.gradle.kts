@@ -19,12 +19,13 @@ repositories {
 }
 
 dependencies {
-	implementation(project(":generated")) // this line doesn't work for me
+	implementation(project(":generated"))
+	runtimeOnly("org.postgresql:postgresql:42.7.1")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
-	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
+	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

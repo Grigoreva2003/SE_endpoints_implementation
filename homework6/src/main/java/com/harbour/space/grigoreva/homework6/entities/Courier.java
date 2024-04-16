@@ -1,30 +1,31 @@
 package com.harbour.space.grigoreva.homework6.entities;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.openapitools.model.QuestDetails;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
+@Entity
+@Table(name = "couriers")
 public class Courier {
+
+    @Id
+    @Column(name = "courier_id")
     private Integer courierId;
-    private Integer numberOfCompletedOrders;
-    private List<QuestDetails> questHistory;
-    private List<QuestDetails> activeQuests;
 
-    public <E> Courier(int courierId,
-                       int numberOfCompletedOrders,
-                       List<QuestDetails> questHistory,
-                       List<QuestDetails> activeQuests) {
-        this.courierId = courierId;
-        this.numberOfCompletedOrders = numberOfCompletedOrders;
-        this.questHistory = questHistory;
-        this.activeQuests = activeQuests;
-    }
+    @Column(name = "completed_orders_num")
+    private Integer completedOrdersNum;
 
-    public void joinQuest(QuestDetails quest) {
-        activeQuests.add(quest);
-    }
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @ManyToMany(mappedBy = "couriers")
+    private Set<QuestDetails> quests = new HashSet<>();
 }

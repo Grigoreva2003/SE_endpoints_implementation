@@ -1,55 +1,57 @@
 package com.harbour.space.grigoreva.homework6.controller;
 
-import com.harbour.space.grigoreva.homework6.entities.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.cookies.AuthenticationData;
+import com.harbour.space.grigoreva.homework6.entities.QuestDetails;
 import com.harbour.space.grigoreva.homework6.service.CourierService;
+import com.harbour.space.grigoreva.homework6.service.QuestService;
 import org.openapitools.api.QuestsApiController;
-import org.openapitools.model.QuestDetails;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
 
 @Component
 public class QuestDetailsController extends QuestsApiController {
     private final CourierService courierService;
+    private final QuestService questService;
     private final AuthenticationData authenticationData =
             new AuthenticationData(
-                    123,
+                    1,
                     "login",
                     "password");
 
-    public QuestDetailsController(CourierService courierService) {
+    public QuestDetailsController(CourierService courierService, QuestService questService) {
         this.courierService = courierService;
+        this.questService = questService;
     }
 
     @Override
-    public ResponseEntity<List<QuestDetails>> questsActiveGet() {
-        return ok(courierService.getActiveQuests());
+    public ResponseEntity<String> questsActiveGet() {
+        return ok(questService.getActiveQuests().toString());
     }
 
     @Override
-    public ResponseEntity<List<QuestDetails>> questsHistoryGet() {
-        List<QuestDetails> questDetailsList = courierService.getQuestsHistory(authenticationData);
-
-        if (questDetailsList.isEmpty())
-            return ResponseEntity.notFound().build();
-        return ok(questDetailsList);
+    public ResponseEntity<String> questsHistoryGet() {
+        return ok(questService.getFinishedQuests().toString());
     }
 
     @Override
-    public ResponseEntity<QuestDetails> questsQuestIdDetailsGet(String questId) {
-        QuestDetails questDetails = courierService.getQuestsDetails(questId);
+    public ResponseEntity<String> questsQuestIdDetailsGet(int questId) {
+        QuestDetails questDetails = questService.getQuestDetails(questId);
 
         if (questDetails == null)
             return ResponseEntity.notFound().build();
-        return ok(questDetails);
+        return ok(questDetails.toString());
     }
 
     @Override
-    public ResponseEntity questsQuestIdJoinPost(String questId) {
-        courierService.joinQuest(authenticationData, questId);
-        return ok().build();
+    public ResponseEntity questsQuestIdJoinPost(int questId) {
+        boolean joined = courierService.joinQuest(authenticationData, questId);
+        if (joined) {
+            return ResponseEntity.ok("Joined quest successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Quest not found or already joined");
+        }
     }
 }
