@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > CourierService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.harbour.space.grigoreva.homework6.service</a>
+</div>
+
+<h1>Coverage Summary for Class: CourierService (com.harbour.space.grigoreva.homework6.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CourierService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.harbour.space.grigoreva.homework6.service;
+&nbsp;
+&nbsp;import com.harbour.space.grigoreva.homework6.cookie.AuthenticationData;
+&nbsp;import com.harbour.space.grigoreva.homework6.entity.Courier;
+&nbsp;import com.harbour.space.grigoreva.homework6.entity.QuestDetails;
+&nbsp;import com.harbour.space.grigoreva.homework6.repository.CourierRepository;
+&nbsp;import com.harbour.space.grigoreva.homework6.repository.QuestDetailsRepository;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class CourierService {
+&nbsp;    private final QuestDetailsRepository questDetailsRepository;
+&nbsp;    private final CourierRepository courierRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public CourierService(QuestDetailsRepository questDetailsRepository, CourierRepository courierRepository) {</b>
+<b class="fc">&nbsp;        this.questDetailsRepository = questDetailsRepository;</b>
+<b class="fc">&nbsp;        this.courierRepository = courierRepository;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public Courier getCourierById(Integer courierId) {
+<b class="fc">&nbsp;        return courierRepository.findByCourierId(courierId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean joinQuest(AuthenticationData authenticationData, int questId) {
+<b class="fc">&nbsp;        int courierId = authenticationData.getCourierId();</b>
+&nbsp;
+<b class="fc">&nbsp;        QuestDetails questDetails = questDetailsRepository.findById(questId).orElse(null);</b>
+<b class="fc">&nbsp;        if (questDetails == null) {</b>
+<b class="fc">&nbsp;            return false; // Quest not found</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        Courier courier = getCourierById(courierId);</b>
+&nbsp;
+<b class="fc">&nbsp;        questDetails.getCouriers().add(courier);</b>
+<b class="fc">&nbsp;        questDetailsRepository.save(questDetails);</b>
+&nbsp;
+<b class="fc">&nbsp;        return true; // Courier joined the quest successfully</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-17 16:10</div>
+</div>
+</body>
+</html>

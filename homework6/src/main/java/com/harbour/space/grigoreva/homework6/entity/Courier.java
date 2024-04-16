@@ -1,4 +1,4 @@
-package com.harbour.space.grigoreva.homework6.entities;
+package com.harbour.space.grigoreva.homework6.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
