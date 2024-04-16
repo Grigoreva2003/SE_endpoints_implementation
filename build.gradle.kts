@@ -3,16 +3,36 @@ plugins {
     java
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+//tasks.jar {
+//    manifest {
+//        attributes["Main-Class"] = "com.harbour.space.grigoreva.homework6.QuestApplication"
+//    }
+//}
+//
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs("homework6/src/main/java")
+//        }
+//    }
+//}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+
+sourceSets {
+    test {
+        java.srcDir("$projectDir/src/test/java")
+    }
 }
 
 tasks.test {

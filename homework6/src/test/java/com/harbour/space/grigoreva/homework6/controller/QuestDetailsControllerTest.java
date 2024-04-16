@@ -1,6 +1,5 @@
 package com.harbour.space.grigoreva.homework6.controller;
 
-import com.harbour.space.grigoreva.homework6.controller.QuestDetailsController;
 import com.harbour.space.grigoreva.homework6.cookie.AuthenticationData;
 import com.harbour.space.grigoreva.homework6.entity.QuestDetails;
 import com.harbour.space.grigoreva.homework6.service.CourierService;
