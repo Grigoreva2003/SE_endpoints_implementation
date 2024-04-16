@@ -31,7 +31,7 @@ curl http://localhost:8888/v1/quests/name/details
 To join a quest with a specific Id
 ```bash
 curl -X 'POST' \
-  'http://localhost:8080/v1/quests/12/join' \
+  'http://localhost:8888/v1/quests/12/join' \
   -H 'accept: */*' \
   -d ''
 ```
